@@ -33,3 +33,9 @@ FindExtremums(CheckEquation("x^2 + 3*x  + 2"), -100, 100, 0.5)
 Which results in 1 minimum point at (-1.5, -0.25), that means that the minimum point's X is above -2 and under -1 (because the interval is 0.5).
 
 Can run it again in that specific range with a smaller interval in order to find a more accurate result.
+<br/><br/>
+
+
+In order to install the packages from the requirements text file check this other repo of mine:
+
+https://github.com/xSpecialFoodx/Requirements-Manager
