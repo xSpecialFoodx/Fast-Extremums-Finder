@@ -50,7 +50,7 @@ def CheckEquation(EquationText: str) -> sympy.core.mul.Mul:
     return sympy.sympify(EquationText.replace('^', "**").replace('x', "X"))
 
 
-def RunEquation(Equation: sympy.core.mul.Mul, Variables: Dict[str, float]) -> float:
+def RunEquation(Equation: sympy.core.mul.Mul, Variables: Dict[str, float] = None) -> float:
     """
     Description:
 
@@ -59,7 +59,9 @@ def RunEquation(Equation: sympy.core.mul.Mul, Variables: Dict[str, float]) -> fl
     Parameters:
 
         Equation: the equation to run
-        Variables: the variables to input into the equation
+        Variables:
+            the variables to input into the equation
+            , the default value is None, which goes for not having any variables
 
     Returns:
 
