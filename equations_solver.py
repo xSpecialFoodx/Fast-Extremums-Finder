@@ -70,4 +70,17 @@ def RunEquation(Equation: sympy.core.mul.Mul, Variables: Dict[str, float] = None
 
     # Start
 
-    return float(Equation.evalf(subs=Variables))
+    return float(
+        Equation.evalf(
+            subs=(
+                (
+                    {
+                        VariablesItem[0].upper(): VariablesItem[1]
+                        for VariablesItem in Variables.items()
+                    }
+                )
+                if Variables is not None
+                else None
+            )
+        )
+    )
