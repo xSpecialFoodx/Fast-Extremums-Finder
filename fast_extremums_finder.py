@@ -18,6 +18,8 @@ from typing import List, Dict
 
 import sympy
 
+import equations_solver
+
 # from __future__ import annotations ->
 # must occur at the beginning of the file, this import makes it possible to use classes as defined types before runtime (this will be the default in python 4)
 # for example: source_variable: SourceClass, in the past you would need to literate it like this: source_variable: "SourceClass", or check if the class has been
@@ -30,50 +32,12 @@ import sympy
 # Start
 
 
-def CheckEquation(EquationText: str) -> sympy.core.mul.Mul:
-    """
-    Description:
-
-        Checks equation based on equation text
-
-    Parameters:
-
-        EquationText: the equation as a string (for example: "x^2 + 3x + 2")
-
-    Returns:
-
-        Returns the equation
-    """
-
-    # Start
-
-    return sympy.sympify(EquationText.replace('^', "**").replace('x', "X"))
-
-
-def RunEquation(Equation: sympy.core.mul.Mul, Variables: Dict[str, float] = None) -> float:
-    """
-    Description:
-
-        Runs the equation based on the variables
-
-    Parameters:
-
-        Equation: the equation to run
-        Variables:
-            the variables to input into the equation
-            , the default value is None, which goes for not having any variables
-
-    Returns:
-
-        Returns the result (typically: "Y")
-    """
-
-    # Start
-
-    return float(Equation.evalf(subs=Variables))
-
-
-def FindExtremums(Equation: sympy.core.mul.Mul, Start: float, End: float, Interval: float) -> Dict[str, List[Dict[str, float]]]:
+def FindExtremums(
+    Equation: sympy.core.mul.Mul
+    , Start: float
+    , End: float
+    , Interval: float
+) -> Dict[str, List[Dict[str, float]]]:
     """
     Description:
 
@@ -81,7 +45,10 @@ def FindExtremums(Equation: sympy.core.mul.Mul, Start: float, End: float, Interv
 
     Parameters:
 
-        Equation: the equation to check extremums for (use the "CheckEquation" function to convert equation text to equation)
+        Equation:
+            the equation to check extremums for
+            (use the "equations_solver.CheckEquation" function to convert equation text to equation)
+
         Start: the starting point to check for extremums
         End: the ending point to check for extremums
         Interval: the interval of the extremums check
@@ -124,13 +91,13 @@ def FindExtremums(Equation: sympy.core.mul.Mul, Start: float, End: float, Interv
     FunctionResult = {"Minimums": Minimums, "Maximums": Maximums}
 
     SecondNumberBeforeX = Index
-    SecondNumberBeforeY = RunEquation(Equation, {"X": SecondNumberBeforeX})
+    SecondNumberBeforeY = equations_solver.RunEquation(Equation, {"X": SecondNumberBeforeX})
 
     Index += Interval
 
     if Index <= End:
         FirstNumberBeforeX = Index
-        FirstNumberBeforeY = RunEquation(Equation, {"X": FirstNumberBeforeX})
+        FirstNumberBeforeY = equations_solver.RunEquation(Equation, {"X": FirstNumberBeforeX})
 
         if SecondNumberBeforeY < FirstNumberBeforeY:
             MinNumberX = SecondNumberBeforeX
@@ -149,7 +116,7 @@ def FindExtremums(Equation: sympy.core.mul.Mul, Start: float, End: float, Interv
 
         while Index <= End:
             CurrentNumberX = Index
-            CurrentNumberY = RunEquation(Equation, {'X': CurrentNumberX})
+            CurrentNumberY = equations_solver.RunEquation(Equation, {'X': CurrentNumberX})
 
             if FirstNumberBeforeY < SecondNumberBeforeY and FirstNumberBeforeY < CurrentNumberY:
                 Minimum = {}
