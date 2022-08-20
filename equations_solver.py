@@ -47,7 +47,7 @@ def CheckEquation(EquationText: str) -> sympy.core.mul.Mul:
 
     # Start
 
-    return sympy.sympify(EquationText.replace('^', "**").replace('x', "X"))
+    return sympy.sympify(EquationText.replace('^', "**").lower())
 
 
 def RunEquation(Equation: sympy.core.mul.Mul, Variables: Dict[str, float] = None) -> float:
@@ -75,7 +75,7 @@ def RunEquation(Equation: sympy.core.mul.Mul, Variables: Dict[str, float] = None
             subs=(
                 (
                     {
-                        VariablesItem[0].upper(): VariablesItem[1]
+                        VariablesItem[0].lower(): VariablesItem[1]
                         for VariablesItem in Variables.items()
                     }
                 )
