@@ -39,3 +39,9 @@ Can run it again in that specific range with a smaller interval in order to find
 Included the file "requirements_installation.bat" to install the packages from the requirements text file, from this other repo of mine:
 
 https://github.com/xSpecialFoodx/Requirements-Manager
+<br/><br/>
+
+
+Included the file "equations_solver.py" to run the equations at every interval, from this other repo of mine:
+
+https://github.com/xSpecialFoodx/Equations-Solver
