@@ -1,5 +1,5 @@
 # Fast-Extremums-Finder
-Finds extremums in an equation in sort of a brute-force way.
+Finds extremums in an equation in sort of a brute-force way (based on a given interval).
 
 Using a range (start and end points) and an interval in order to find extremums in the given equation, if there're any.
 <br/><br/>
