@@ -30,6 +30,90 @@ import sympy
 # Start
 
 
+def BeautifyEquationText(EquationText: str) -> str:
+    """
+    Description:
+
+        Beautifies the equation text
+
+    Parameters:
+
+        EquationText: the equation as a string (for example: "x^2 + 3x + 2")
+
+    Returns:
+
+        Returns the beautified equation text
+    """
+
+    # Function Variables
+
+    FunctionResult = None
+
+    SymbolsList = "+-*/^"
+
+    BeautifiedEquationText = ' '.join(EquationText.split())
+    BeautifiedEquationTextLength = len(BeautifiedEquationText)
+    BeautifiedEquationTextIndex = None
+
+    # Start
+
+    if BeautifiedEquationTextLength > 2:
+        BeautifiedEquationTextIndex = 1
+
+        while BeautifiedEquationTextIndex < BeautifiedEquationTextLength - 1:
+            if (BeautifiedEquationText[BeautifiedEquationTextIndex] in SymbolsList) is True:
+                if (
+                    (BeautifiedEquationText[BeautifiedEquationTextIndex - 1] in SymbolsList) is False
+                    and BeautifiedEquationText[BeautifiedEquationTextIndex - 1] != ' '
+                ):
+                    BeautifiedEquationText = (
+                        BeautifiedEquationText[:BeautifiedEquationTextIndex]
+                        + ' '
+                        + BeautifiedEquationText[BeautifiedEquationTextIndex:]
+                    )
+
+                    BeautifiedEquationTextLength += 1
+                    BeautifiedEquationTextIndex += 1
+
+                if (
+                    (BeautifiedEquationText[BeautifiedEquationTextIndex + 1] in SymbolsList) is False
+                    and BeautifiedEquationText[BeautifiedEquationTextIndex + 1] != ' '
+                ):
+                    BeautifiedEquationText = (
+                        BeautifiedEquationText[:BeautifiedEquationTextIndex + 1]
+                        + ' '
+                        + BeautifiedEquationText[BeautifiedEquationTextIndex + 1:]
+                    )
+
+                    BeautifiedEquationTextLength += 1
+
+            BeautifiedEquationTextIndex += 1
+
+    FunctionResult = BeautifiedEquationText
+
+    return FunctionResult
+
+
+def SimplifyEquationText(EquationText: str) -> str:
+    """
+    Description:
+
+        Simplifying the equation text
+
+    Parameters:
+
+        EquationText: the equation as a string (for example: "x^2 + 3x + 2")
+
+    Returns:
+
+        Returns the simplified equation text
+    """
+
+    # Start
+
+    return BeautifyEquationText(str(sympy.sympify(EquationText.replace('^', "**"))).replace("**", '^'))
+
+
 def CheckEquation(EquationText: str) -> sympy.core.mul.Mul:
     """
     Description:
