@@ -62,6 +62,7 @@ def FindExtremums(
     # Function Variables
 
     FunctionResult = None
+    CurrentResult = None
 
     Minimums = []
     Minimum = None
@@ -88,7 +89,12 @@ def FindExtremums(
 
     # Start
 
-    FunctionResult = {"Minimums": Minimums, "Maximums": Maximums}
+    CurrentResult = (
+        {
+            "Minimums": Minimums
+            , "Maximums": Maximums
+        }
+    )
 
     SecondNumberBeforeX = Index
     SecondNumberBeforeY = equations_solver.RunEquation(Equation, {"X": SecondNumberBeforeX})
@@ -170,5 +176,7 @@ def FindExtremums(
 
                 Maximums.append(Maximum)
                 Maximums.sort(key=lambda Maximum: Maximum["X"])
+
+    FunctionResult = CurrentResult
 
     return FunctionResult
